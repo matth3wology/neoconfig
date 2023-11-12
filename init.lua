@@ -1,4 +1,3 @@
-
 -- Main Configurations
 vim.opt.number = true
 vim.opt.shiftwidth = 4
@@ -13,4 +12,3 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 vim.keymap.set('i', '{}', '{}<C-o>i')
 vim.keymap.set('i', '{<CR>', '{<CR>}<C-o>O')
-

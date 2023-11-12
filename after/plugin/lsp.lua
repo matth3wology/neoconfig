@@ -1,52 +1,86 @@
 local lsp = require('lsp-zero')
+local mason = require('mason')
+local mason_config = require('mason-lspconfig')
+local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
+local luasnip = require('luasnip')
+
+require("luasnip.loaders.from_vscode").lazy_load()
 
 lsp.preset("recommended")
-local on_attach = function(client, buffnr)
-    -- lsp.default_keymaps({buffer=bffnr})
-    local opts = {buffer = buffnr, remap = false}
+
+lsp.on_attach(function(_, buffnr)
+    lsp.default_keymaps({ buffer = buffnr })
 
     lsp.buffer_autoformat()
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.diagnostic.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.diagnostic.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.diagnostic.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end
+end)
 
-
-lsp.on_attach(on_attach)
-
-local cmp = require('cmp')
-local cmp_action = lsp.cmp_action()
-
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-     -- Navigate between snippet placeholder
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-})
-
-require('mason').setup({
+mason.setup({
     PATH = "prepend",
 })
 
-require('mason-lspconfig').setup({
-  ensure_installed = {
-      'eslint',
-      'rust_analyzer',
-      'gopls',
-  },
-  handlers = {
-    lsp.default_setup,
-  },
+mason_config.setup({
+    ensure_installed = {
+        'eslint',
+        'rust_analyzer',
+        'gopls',
+        'lua_ls',
+    },
+    handlers = {
+        lsp.default_setup,
+    },
 })
 
+
+local cmp = require('cmp')
+local cmp_lsp = require('cmp_nvim_lsp')
+
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" })
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    }),
+})
+
+lspconfig.gopls.setup {
+    cmd = { "gopls" },
+    capabilities = cmp_lsp.default_capabilities(),
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.mod", ".git"),
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedParameters = true,
+            },
+        },
+    },
+}
