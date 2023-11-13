@@ -25,6 +25,8 @@ mason_config.setup({
         'rust_analyzer',
         'gopls',
         'lua_ls',
+        'pylsp',
+        'pyright',
     },
     handlers = {
         lsp.default_setup,
@@ -45,6 +47,8 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -67,6 +71,12 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
     }),
+    window = {
+        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+            winhighlight = 'Normal:CmpPmenu,CursorLine:PmenuSel,Search:None'
+        }),
+    },
 })
 
 lspconfig.gopls.setup {
@@ -74,6 +84,22 @@ lspconfig.gopls.setup {
     capabilities = cmp_lsp.default_capabilities(),
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
     root_dir = util.root_pattern("go.mod", ".git"),
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedParameters = true,
+            },
+        },
+    },
+}
+
+lspconfig.pylsp.setup {
+    cmd = { "pylsp" },
+    capabilities = cmp_lsp.default_capabilities(),
+    filetypes = { "py" },
+    root_dir = util.root_pattern("main.py", ".git"),
     settings = {
         gopls = {
             completeUnimported = true,
