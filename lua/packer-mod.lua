@@ -54,4 +54,16 @@ return packer.startup(function(use)
     use 'ray-x/go.nvim'
     use 'ray-x/guihua.lua' -- recommended if need floating window support
     use 'neovim/nvim-lspconfig'
+
+    use('rmagatti/goto-preview')
+
+    use {
+        'folke/noice.nvim',
+        requires = {
+            { 'MunifTanjim/nui.nvim' },
+            { 'rcarriga/nvim-notify' },
+        },
+    }
+
+    use('lewis6991/gitsigns.nvim')
 end)
