@@ -25,7 +25,6 @@ mason_config.setup({
         'rust_analyzer',
         'gopls',
         'lua_ls',
-        'pylsp',
         'pyright',
     },
     handlers = {
@@ -83,7 +82,7 @@ lspconfig.gopls.setup {
     cmd = { "gopls" },
     capabilities = cmp_lsp.default_capabilities(),
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    root_dir = util.root_pattern("go.mod", ".git"),
+    --root_dir = util.root_pattern("go.mod", ".git"),
     settings = {
         gopls = {
             completeUnimported = true,
@@ -95,18 +94,4 @@ lspconfig.gopls.setup {
     },
 }
 
-lspconfig.pylsp.setup {
-    cmd = { "pylsp" },
-    capabilities = cmp_lsp.default_capabilities(),
-    filetypes = { "py" },
-    root_dir = util.root_pattern("main.py", ".git"),
-    settings = {
-        gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-                unusedParameters = true,
-            },
-        },
-    },
-}
+lspconfig.pyright.setup {}
