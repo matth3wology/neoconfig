@@ -16,11 +16,7 @@ return packer.startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
 
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-    })
-
+    use { "catppuccin/nvim", as = "catppuccin" }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
@@ -36,20 +32,15 @@ return packer.startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
-
     use('nvim-tree/nvim-tree.lua')
     use('nvim-tree/nvim-web-devicons')
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
-
     use 'ray-x/go.nvim'
     use 'ray-x/guihua.lua'
-    use 'neovim/nvim-lspconfig'
-
     use('rmagatti/goto-preview')
-
     use {
         'folke/noice.nvim',
         requires = {
@@ -57,7 +48,6 @@ return packer.startup(function(use)
             { 'rcarriga/nvim-notify' },
         },
     }
-
     use('lewis6991/gitsigns.nvim')
     use('rhysd/conflict-marker.vim')
 end)
