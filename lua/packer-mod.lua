@@ -3,13 +3,11 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require('packer')
 
 return packer.startup(function(use)
-    -- Packer can manage itself
     use('wbthomason/packer.nvim')
     use('folke/trouble.nvim')
     use('lukas-reineke/indent-blankline.nvim')
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.4',
-        -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -18,16 +16,11 @@ return packer.startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
 
-    -- Color Scheme
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
     })
 
-    -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
@@ -52,7 +45,7 @@ return packer.startup(function(use)
     }
 
     use 'ray-x/go.nvim'
-    use 'ray-x/guihua.lua' -- recommended if need floating window support
+    use 'ray-x/guihua.lua'
     use 'neovim/nvim-lspconfig'
 
     use('rmagatti/goto-preview')
@@ -66,5 +59,4 @@ return packer.startup(function(use)
     }
 
     use('lewis6991/gitsigns.nvim')
-    use('akinsho/git-conflict.nvim')
 end)
