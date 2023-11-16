@@ -15,7 +15,15 @@ return packer.startup(function(use)
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
+
+    --COLORS
     use({ 'rose-pine/neovim', as = 'rose-pine' })
+    use({ 'folke/tokyonight.nvim', as = 'tokyonight' })
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use({ 'hardhackerlabs/theme-vim', as = 'hardhacker' })
+    use({ 'thedenisnikulin/vim-cyberpunk', as = 'cyberpunk' })
+
+    --LSP (Langauge Server Protocol)
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
@@ -31,6 +39,8 @@ return packer.startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
+
+    use('jose-elias-alvarez/null-ls.nvim')
     use('nvim-tree/nvim-tree.lua')
     use('nvim-tree/nvim-web-devicons')
     use {
@@ -49,4 +59,5 @@ return packer.startup(function(use)
     }
     use('lewis6991/gitsigns.nvim')
     use('rhysd/conflict-marker.vim')
+    use('m4xshen/autoclose.nvim')
 end)
