@@ -1,1 +1,3 @@
-require("autoclose").setup()
+require("autoclose").setup {
+    ["<"] = { escape = true, close = true, pair = "<>" },
+}

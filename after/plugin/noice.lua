@@ -26,3 +26,7 @@ end)
 vim.keymap.set("n", "<leader>nh", function()
     noice.cmd("history")
 end)
+
+vim.keymap.set("n", "<leader>nd", function()
+    noice.cmd("dismiss")
+end)
