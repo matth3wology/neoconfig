@@ -9,7 +9,6 @@ vim.opt.relativenumber = true
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-vim.keymap.set('i', '{}', '{}<C-o>i')
-vim.keymap.set('i', '{<CR>', '{<CR>}<C-o>O')
+--vim.keymap.set('i', '{<CR>', '{<CR>}<C-o>O')
 
 vim.opt.swapfile = false
