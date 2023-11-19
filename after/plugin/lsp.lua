@@ -26,6 +26,7 @@ mason_config.setup({
         'gopls',
         'lua_ls',
         'pyright',
+        'tsserver'
     },
     handlers = {
         lsp.default_setup,
@@ -98,3 +99,5 @@ lspconfig.gopls.setup {
 }
 
 lspconfig.pyright.setup {}
+lspconfig.tsserver.setup {}
+lspconfig.cssls.setup {}

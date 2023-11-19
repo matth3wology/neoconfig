@@ -99,4 +99,19 @@ return packer.startup(function(use)
     use('m4xshen/autoclose.nvim')
     use('numToStr/Comment.nvim')
     use('anuvyklack/pretty-fold.nvim')
+
+    --PlantUML
+    use('aklt/plantuml-syntax')
+    use {
+        'weirongxu/plantuml-previewer.vim',
+        requires = {
+            { 'tyru/open-browser.vim' }
+        }
+    }
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+    use('windwp/nvim-ts-autotag')
+    use('windwp/nvim-autopairs')
 end)
