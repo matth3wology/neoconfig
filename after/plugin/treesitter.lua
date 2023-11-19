@@ -3,13 +3,15 @@ require 'nvim-treesitter.configs'.setup {
     auto_install = true,
     sync_install = false,
     highlight = {
-        enable = true
+        enable = true,
+        disable = { 'c', 'rust', 'go' }
     },
     indent = {
         enable = true
     },
     autotag = {
         enable = true,
+        disable = { 'c', 'rust', 'go' }
     }
 }
 
