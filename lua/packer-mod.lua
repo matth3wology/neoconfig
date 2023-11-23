@@ -96,7 +96,6 @@ return packer.startup(function(use)
     }
     use('lewis6991/gitsigns.nvim')
     use('rhysd/conflict-marker.vim')
-    use('m4xshen/autoclose.nvim')
     use('numToStr/Comment.nvim')
     use('anuvyklack/pretty-fold.nvim')
 
@@ -112,6 +111,8 @@ return packer.startup(function(use)
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
     })
+
+    use('m4xshen/autoclose.nvim')
     use('windwp/nvim-ts-autotag')
     use('windwp/nvim-autopairs')
 end)

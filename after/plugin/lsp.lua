@@ -21,7 +21,6 @@ mason.setup({
 
 mason_config.setup({
     ensure_installed = {
-        'eslint',
         'rust_analyzer',
         'gopls',
         'lua_ls',
@@ -86,7 +85,7 @@ lspconfig.gopls.setup {
     cmd = { "gopls" },
     capabilities = cmp_lsp.default_capabilities(),
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    --root_dir = util.root_pattern("go.mod", ".git"),
+    root_dir = util.root_pattern("go.mod", ".git"),
     settings = {
         gopls = {
             completeUnimported = true,
@@ -98,6 +97,14 @@ lspconfig.gopls.setup {
     },
 }
 
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.cssls.setup {}
+lspconfig.pyright.setup {
+    capabilities = cmp_lsp.default_capabilities(),
+}
+
+lspconfig.tsserver.setup {
+    capabilities = cmp_lsp.default_capabilities(),
+}
+
+lspconfig.cssls.setup {
+    capabilities = cmp_lsp.default_capabilities(),
+}
