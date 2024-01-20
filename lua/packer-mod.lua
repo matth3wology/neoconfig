@@ -115,4 +115,7 @@ return packer.startup(function(use)
     use('m4xshen/autoclose.nvim')
     use('windwp/nvim-ts-autotag')
     use('windwp/nvim-autopairs')
+
+    -- Format JSON
+    use('gennaro-tedesco/nvim-jqx')
 end)

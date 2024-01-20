@@ -194,6 +194,11 @@ _G.packer_plugins = {
     path = "/home/msneed/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-jqx"] = {
+    loaded = true,
+    path = "/home/msneed/.local/share/nvim/site/pack/packer/start/nvim-jqx",
+    url = "https://github.com/gennaro-tedesco/nvim-jqx"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/msneed/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
