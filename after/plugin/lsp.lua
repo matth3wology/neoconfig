@@ -1,6 +1,7 @@
-local lsp = require('lsp-zero')
 local mason = require('mason')
+local lsp = require('lsp-zero')
 local mason_config = require('mason-lspconfig')
+local mason_tool = require('mason-tool-installer')
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
 local luasnip = require('luasnip')
@@ -26,12 +27,20 @@ mason_config.setup({
         'lua_ls',
         'pyright',
         'tsserver',
+        'tsserver',
+        'eslint',
     },
     handlers = {
         lsp.default_setup,
     },
 })
 
+mason_tool.setup({
+    ensure_installed = {
+        'black',
+        'cssls'
+    }
+})
 
 local cmp = require('cmp')
 local cmp_lsp = require('cmp_nvim_lsp')
@@ -95,6 +104,10 @@ lspconfig.gopls.setup {
             },
         },
     },
+}
+
+lspconfig.black.setup {
+    capabilities = cmp_lsp.default_capabilities(),
 }
 
 lspconfig.pyright.setup {
