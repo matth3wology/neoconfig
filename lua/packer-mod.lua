@@ -1,3 +1,7 @@
+-- To update Packer after any changes are installs run:
+-- 1) :so
+-- 2) :PackerSync
+
 local fn = vim.fn
 
 -- Automatically install packer
@@ -121,6 +125,7 @@ return packer.startup(function(use)
   }
   use('windwp/nvim-autopairs')
   use('m4xshen/autoclose.nvim')
+  use('windwp/nvim-ts-autotag')
 
   -- Format JSON
   use('gennaro-tedesco/nvim-jqx')
