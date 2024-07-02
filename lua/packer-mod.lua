@@ -33,8 +33,6 @@ if not status_ok then
   return
 end
 
-local packer = require('packer')
-
 packer.init({
   display = {
     open_fn = function()
@@ -117,15 +115,9 @@ return packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  use {
-    'windwp/nvim-ts-autotag',
-    config = function()
-      require('nvim-ts-autotag').setup()
-    end
-  }
+  use('windwp/nvim-ts-autotag')
   use('windwp/nvim-autopairs')
   use('m4xshen/autoclose.nvim')
-  use('windwp/nvim-ts-autotag')
 
   -- Format JSON
   use('gennaro-tedesco/nvim-jqx')
