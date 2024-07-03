@@ -284,6 +284,11 @@ _G.packer_plugins = {
     path = "/home/msneed/.local/share/nvim/site/pack/packer/start/tokyonight",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  transparent = {
+    loaded = true,
+    path = "/home/msneed/.local/share/nvim/site/pack/packer/start/transparent",
+    url = "https://github.com/xiyaowong/transparent.nvim"
+  },
   ["trouble.nvim"] = {
     loaded = true,
     path = "/home/msneed/.local/share/nvim/site/pack/packer/start/trouble.nvim",

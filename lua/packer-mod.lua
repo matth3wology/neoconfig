@@ -61,6 +61,7 @@ return packer.startup(function(use)
   use({ "catppuccin/nvim", as = "catppuccin" })
   use({ 'hardhackerlabs/theme-vim', as = 'hardhacker' })
   use({ 'thedenisnikulin/vim-cyberpunk', as = 'cyberpunk' })
+  use({ 'xiyaowong/transparent.nvim', as = 'transparent' })
 
   --LSP (Langauge Server Protocol)
   use {
