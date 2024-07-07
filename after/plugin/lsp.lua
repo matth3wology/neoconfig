@@ -7,6 +7,7 @@ local util = require('lspconfig/util')
 local luasnip = require('luasnip')
 
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 
 lsp.preset("recommended")
 
@@ -79,8 +80,9 @@ cmp.setup({
     end, { "i", "s" })
   }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
   }),
   window = {
     documentation = cmp.config.window.bordered(),

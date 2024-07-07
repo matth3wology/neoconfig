@@ -122,4 +122,10 @@ return packer.startup(function(use)
 
   -- Format JSON
   use('gennaro-tedesco/nvim-jqx')
+
+  -- TODO Comments
+  use {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  }
 end)
