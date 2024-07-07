@@ -81,7 +81,9 @@ return packer.startup(function(use)
     }
   }
 
-  use('jose-elias-alvarez/null-ls.nvim')
+  use { 'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
   use('nvim-tree/nvim-tree.lua')
   use('nvim-tree/nvim-web-devicons')
   use {

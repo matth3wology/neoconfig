@@ -1,10 +1,11 @@
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
+  disable = {"systemverilog"},
   auto_install = true,
-  sync_install = false,
+  sync_install = true,
   highlight = {
     enable = true,
-    disable = { 'c', 'rust' }
+    disable = { 'systemverilog','c', 'rust' }
   },
   indent = {
     enable = true

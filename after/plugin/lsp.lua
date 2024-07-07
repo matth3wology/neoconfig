@@ -108,9 +108,9 @@ lspconfig.gopls.setup {
   },
 }
 
-lspconfig.black.setup {
-  capabilities = cmp_lsp.default_capabilities(),
-}
+-- lspconfig.black.setup {
+--   capabilities = cmp_lsp.default_capabilities(),
+-- }
 
 lspconfig.pyright.setup {
   capabilities = cmp_lsp.default_capabilities(),
