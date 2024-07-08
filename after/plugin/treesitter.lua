@@ -1,11 +1,11 @@
 require 'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
-  disable = {"systemverilog"},
+  disable = { "systemverilog" },
   auto_install = true,
-  sync_install = true,
+  sync_install = false,
   highlight = {
     enable = true,
-    disable = { 'systemverilog','c', 'rust' }
+    disable = { 'systemverilog', 'c', 'rust' }
   },
   indent = {
     enable = true
@@ -24,3 +24,8 @@ local autopairs = require('nvim-autopairs')
 autopairs.setup({
   disable_filetype = { "TelescopePrompt", "vim" }
 })
+
+require 'nvim-treesitter.install'.compilers = {
+  -- Other compilers configurations
+  systemverilog = {}, -- Exclude SystemVerilog parser
+}
