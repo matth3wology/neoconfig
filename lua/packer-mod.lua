@@ -85,7 +85,13 @@ return packer.startup(function(use)
   -- Autotagging and auto pairs
   use('windwp/nvim-ts-autotag')
   use('windwp/nvim-autopairs')
-  use('m4xshen/autoclose.nvim')
+  use { 'm4xshen/autoclose.nvim',
+    config = function()
+      require("autoclose").setup {
+        ["<"] = { escape = true, close = true, pair = "<>" },
+      }
+    end
+  }
 
   -- Color Libraries & Themes
   use({ 'rose-pine/neovim', as = 'rose-pine' })
@@ -148,6 +154,13 @@ return packer.startup(function(use)
       require('gitsigns').setup()
     end
   }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
   use('rhysd/conflict-marker.vim')
 
   -- Comment support for code
