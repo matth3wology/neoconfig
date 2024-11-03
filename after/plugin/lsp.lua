@@ -106,6 +106,10 @@ lspconfig.gopls.setup {
   },
 }
 
+lspconfig.hls.setup {
+  capabilities = cmp_lsp.default_capabilities(),
+}
+
 lspconfig.pyright.setup {
   capabilities = cmp_lsp.default_capabilities(),
 }

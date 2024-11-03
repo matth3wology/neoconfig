@@ -1,4 +1,4 @@
-vim.cmd.colorscheme "oxocarbon"
+vim.cmd.colorscheme "cyberdream"
 vim.opt.termguicolors = true
 
 require("notify").setup({

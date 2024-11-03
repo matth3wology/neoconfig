@@ -101,6 +101,7 @@ return packer.startup(function(use)
   use({ 'thedenisnikulin/vim-cyberpunk', as = 'cyberpunk' })
   use({ 'nyoom-engineering/oxocarbon.nvim', as = 'oxocarbon' })
   use({ 'xiyaowong/transparent.nvim', as = 'transparent' })
+  use({ 'scottmckendry/cyberdream.nvim', as = 'cyberdream' })
 
   -- GUI for things like fuzzy finder
   use { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
@@ -148,12 +149,14 @@ return packer.startup(function(use)
       vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
     end
   }
+
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
   }
+
   use {
     'numToStr/Comment.nvim',
     config = function()
