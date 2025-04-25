@@ -11,10 +11,17 @@ vim.opt.relativenumber = true
 
 -- Set Color
 vim.opt.syntax = 'on'
-vim.cmd('colorscheme cyberdream')
+vim.cmd('colorscheme hardhacker-darker')
 
 -- Map the Leader key
 vim.g.mapleader = ' '
 
 -- Handle Swap Files
 vim.opt.swapfile = false
+
+-- Conceal Level
+vim.o.conceallevel = 1
+vim.api.nvim_set_hl(1, "HelpBar", { link = "Normal" })
+vim.api.nvim_set_hl(1, "HelpStar", { link = "Normal" })
+
+vim.lsp.set_log_level("debug")

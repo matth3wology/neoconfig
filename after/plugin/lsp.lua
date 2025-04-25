@@ -9,6 +9,11 @@ local luasnip = require('luasnip')
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 
+require("lint").linters_by_ft = {
+  cpp = { 'cpplint' },
+  c = { 'cpplint' },
+}
+
 lsp.preset("recommended")
 
 lsp.on_attach(function(_, buffnr)
@@ -16,6 +21,13 @@ lsp.on_attach(function(_, buffnr)
 
   lsp.buffer_autoformat()
 end)
+
+-- AutoSave linting
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require('lint').try_lint()
+  end
+})
 
 mason.setup({
   PATH = "prepend",
@@ -28,7 +40,7 @@ mason_config.setup({
     'lua_ls',
     'pyright',
     'ts_ls',
-    'eslint',
+    'eslint'
   },
   handlers = {
     lsp.default_setup,
@@ -118,8 +130,19 @@ lspconfig.ts_ls.setup {
   capabilities = cmp_lsp.default_capabilities(),
 }
 
+lspconfig.clojure_lsp.setup {
+  cmd = { "clojure-lsp" },
+  filetypes = { "clj", "clj", "cljs", "cljr", "cljc", "cljd", "edn" },
+  capabilities = cmp_lsp.default_capabilities(),
+}
+
 lspconfig.cssls.setup {
   capabilities = cmp_lsp.default_capabilities(),
+}
+
+lspconfig.julials.setup {
+  capabilities = cmp_lsp.default_capabilities(),
+  filetypes = { "jl" },
 }
 
 lspconfig.lua_ls.setup({

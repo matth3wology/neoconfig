@@ -17,7 +17,7 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 local autotag = require("nvim-ts-autotag")
 autotag.setup({
-  filetypes = { "html", "xml", "typescriptreact", "javascriptreact" }
+  filetypes = { "html", "xml", "typescriptreact", "javascriptreact", "clojure" }
 })
 
 local autopairs = require('nvim-autopairs')

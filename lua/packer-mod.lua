@@ -124,6 +124,10 @@ return packer.startup(function(use)
     }
   }
 
+  -- Linting. Null-ls seems to be deprecated, so try this one out.
+  use('mfussenegger/nvim-lint')
+  use('mhartington/formatter.nvim')
+
   -- Goto Preview used to follow code definitions
   use {
     'rmagatti/goto-preview',
@@ -174,4 +178,14 @@ return packer.startup(function(use)
 
   -- JSON Formatter
   use('gennaro-tedesco/nvim-jqx')
+
+  -- Obsidian for notes
+  use {
+    "epwalsh/obsidian.nvim",
+    tag = "*",
+    requires = { "nvim-lua/plenary.nvim" },
+  }
+
+  -- UFO
+  use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 end)
