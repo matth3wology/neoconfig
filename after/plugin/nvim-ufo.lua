@@ -1,5 +1,5 @@
 -- Set foldlevel in Neovim
-vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldcolumn = '0' -- '0' is not bad
 vim.o.foldlevel = 180  -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 180
 vim.o.foldenable = true
