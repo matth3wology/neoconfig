@@ -138,6 +138,9 @@ return packer.startup(function(use)
     end
   }
 
+  -- Logger
+  use('rmagatti/logger.nvim')
+
   -- GO Language support
   use {
     'ray-x/go.nvim',
@@ -178,13 +181,6 @@ return packer.startup(function(use)
 
   -- JSON Formatter
   use('gennaro-tedesco/nvim-jqx')
-
-  -- Obsidian for notes
-  use {
-    "epwalsh/obsidian.nvim",
-    tag = "*",
-    requires = { "nvim-lua/plenary.nvim" },
-  }
 
   -- UFO
   use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }

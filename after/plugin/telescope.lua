@@ -2,7 +2,7 @@ local builtin = require('telescope.builtin')
 local trouble = require('trouble.sources.telescope')
 local actions = require('telescope.actions')
 local telescope = require('telescope')
- 
+
 -- Initial telescope setup
 telescope.setup {
   defaults = {
@@ -32,4 +32,3 @@ end)
 
 -- Used to search through .git files in the directory
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-
