@@ -11,7 +11,7 @@ vim.opt.relativenumber = true
 
 -- Set Color
 vim.opt.syntax = 'on'
-vim.cmd('colorscheme hardhacker-darker')
+vim.cmd('colorscheme tokyonight-night')
 
 -- Map the Leader key
 vim.g.mapleader = ' '
@@ -25,3 +25,9 @@ vim.api.nvim_set_hl(1, "HelpBar", { link = "Normal" })
 vim.api.nvim_set_hl(1, "HelpStar", { link = "Normal" })
 
 vim.lsp.set_log_level("debug")
+
+-- User Scripts
+local test = require("scripts.test")
+vim.api.nvim_create_user_command("WrapFunc", test.wrap_in_function, {})
+vim.api.nvim_create_user_command("NameFunc", test.names_to_functions, {})
+vim.api.nvim_create_user_command("TestLines", test.get_lines, {})

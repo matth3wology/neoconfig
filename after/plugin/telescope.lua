@@ -1,5 +1,4 @@
 local builtin = require('telescope.builtin')
-local trouble = require('trouble.sources.telescope')
 local actions = require('telescope.actions')
 local telescope = require('telescope')
 
@@ -8,14 +7,12 @@ telescope.setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-t>'] = trouble.open_with_trouble,
         ['<C-n>'] = actions.select_vertical,
         ['<C-p>'] = actions.select_horizontal,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
       },
       n = {
-        ['<C-t>'] = trouble.open_with_trouble,
       },
     },
   },

@@ -1,4 +1,4 @@
-vim.cmd.colorscheme "hardhacker-darker"
+vim.cmd.colorscheme "tokyonight-night"
 vim.opt.termguicolors = true
 
 require("notify").setup({

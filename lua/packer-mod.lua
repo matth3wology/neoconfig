@@ -53,6 +53,7 @@ return packer.startup(function(use)
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'folke/trouble.nvim' },
+      { 'folke/neodev.nvim' },
     },
   }
 

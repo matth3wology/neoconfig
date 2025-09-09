@@ -40,8 +40,9 @@ mason_config.setup({
     'lua_ls',
     'pyright',
     'ts_ls',
-    'eslint'
+    'eslint',
   },
+  automatic_enable = {},
   handlers = {
     lsp.default_setup,
   },
@@ -55,7 +56,6 @@ mason_tool.setup({
 
 local cmp = require('cmp')
 local cmp_lsp = require('cmp_nvim_lsp')
-
 
 cmp.setup({
   snippet = {
@@ -122,21 +122,9 @@ lspconfig.hls.setup {
   capabilities = cmp_lsp.default_capabilities(),
 }
 
-lspconfig.pyright.setup {
-  capabilities = cmp_lsp.default_capabilities(),
-}
-
-lspconfig.ts_ls.setup {
-  capabilities = cmp_lsp.default_capabilities(),
-}
-
 lspconfig.clojure_lsp.setup {
   cmd = { "clojure-lsp" },
   filetypes = { "clj", "clj", "cljs", "cljr", "cljc", "cljd", "edn" },
-  capabilities = cmp_lsp.default_capabilities(),
-}
-
-lspconfig.cssls.setup {
   capabilities = cmp_lsp.default_capabilities(),
 }
 
@@ -145,12 +133,55 @@ lspconfig.julials.setup {
   filetypes = { "jl" },
 }
 
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
       diagnostics = {
-        globals = { 'vim' }
-      }
-    }
+        -- Get the language server to recognize the `vim` global
+        globals = {
+          'vim',
+          'require'
+        },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
+lspconfig.eslint.setup({
+  on_attach = function(client, _)
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.definitionProvider = false
+  end,
+  on_init = function(client)
+    client.server_capabilities.definitionProvider = false
+  end,
+  settings = {
+    format = { enable = true }, -- enable formatting
   }
 })
+
+lspconfig.omnisharp.setup({
+  cmd = { "omnisharp" }, -- or the full path to the binary
+  root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+  enable_editorconfig_support = true,
+  enable_roslyn_analyzers = true,
+  organize_imports_on_format = true,
+  enable_import_completion = true,
+})
+
+lspconfig.clangd.setup {
+  cmd = { "clangd", "--compile-commands-dir=build" }
+}
