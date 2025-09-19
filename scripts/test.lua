@@ -37,4 +37,18 @@ M.get_lines = function()
   end
 end
 
+-- Replace only in the visual block
+M.wrap_block = function()
+  local func_name = "block"
+  local bufnr = vim.api.nvim_get_current_buf()
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+  local start_line = start_pos[2] - 1
+  local end_line = end_pos[2]
+  local lines = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, false)
+  table.insert(lines, 1, "const " .. func_name .. " = () => {")
+  table.insert(lines, "}")
+  vim.api.nvim_buf_set_lines(bufnr, start_line, end_line, false, lines)
+end
+
 return M

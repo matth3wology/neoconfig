@@ -122,6 +122,14 @@ lspconfig.hls.setup {
   capabilities = cmp_lsp.default_capabilities(),
 }
 
+lspconfig.rust_analyzer.setup {
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = { allFeatures = true }
+    }
+  }
+}
+
 lspconfig.clojure_lsp.setup {
   cmd = { "clojure-lsp" },
   filetypes = { "clj", "clj", "cljs", "cljr", "cljc", "cljd", "edn" },
